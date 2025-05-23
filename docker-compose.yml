@@ -12,7 +12,7 @@ services:
     volumes:
       - ./schema:/usr/share/nginx/html/schema:ro
     ports:
-      - "8080:80"
+      - "80:80"
 
   g3po:
     image: quay.io/umccr/g3po
@@ -23,7 +23,7 @@ services:
       - ./dictionary:/dictionary:rw
 
   postgres:
-    image: postgres:9.6
+    image: postgres:14
     container_name: ddpostgres
     ports:
       - "5432:5432"
