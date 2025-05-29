@@ -24,6 +24,7 @@ systemProperties:
 required:
   - submitter_id
   - type
+  - study
 
 uniqueKeys:
   - [id]
@@ -84,6 +85,8 @@ properties:
     description: "template version"     
 
   core_metadata_collections:
+    $ref: "_definitions.yaml#/to_many"
+  study:
     $ref: "_definitions.yaml#/to_many"
 
 
