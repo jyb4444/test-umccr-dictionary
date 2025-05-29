@@ -72,3 +72,5 @@ properties:
     $ref: "_definitions.yaml#/datetime"
   updated_datetime:
     $ref: "_definitions.yaml#/datetime"
+  culture_conditionss:
+    $ref: "_definitions.yaml#/to_many"
