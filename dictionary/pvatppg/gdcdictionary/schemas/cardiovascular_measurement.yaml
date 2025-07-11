@@ -51,7 +51,7 @@ links:
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
-    enum: [ "weight_measurement" ]
+    enum: [ "cardiovascular_measurement" ]
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
