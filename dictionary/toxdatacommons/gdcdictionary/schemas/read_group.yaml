@@ -40,77 +40,111 @@ links:
 properties:
   type:
     enum: ["read_group"]
+    description: "The node type, which must be 'read_group'. Used for schema validation."
   submitter_id:
     type: string
+    description: "The file ID assigned by the submitter."
   aliquots:
-    $ref: "_definitions.yaml#/to_many"
-    
+    $ref: "_definitions.yaml#/to_many"   
   adapter_sequence:
     type: string
+    description: "Adapter sequence used during library prep for trimming."
   barcoding_applied:
     type: boolean
+    description: "Boolean indicating whether barcoding was used."
   base_caller_name:
     type: string
+    description: "Name of the basecalling software used."
   base_caller_version:
     type: string
+    description: "Version of the basecalling software."
   flow_cell_barcode:
     type: string
+    description: "Barcode assigned to the sequencing flow cell."
   spike_ins:
     $ref: "_definitions.yaml#/spike_ins"
+    description: "Spike-in controls used for normalization."
   instrument_model:
     $ref: "_definitions.yaml#/instrument_model"
+    description: "Sequencing instrument model used."
   is_paired_end:
     type: boolean
+    description: "TRUE if paired-end sequencing was performed."
   library_preparation_kit_catalog_number:
     type: string
+    description: "Catalog number of the library prep kit."
   library_preparation_kit_name:
     type: string
+    description: "Name of the library prep kit."
   library_preparation_kit_vendor:
     type: string
+    description: "Vendor for the library prep kit."
   library_preparation_kit_version:
     type: string
+    description: "Version of the library prep kit."
   library_selection:
     $ref: "_definitions.yaml#/library_selection"
+    description: "Method used to select nucleic acid for sequencing."
   library_strand:
     $ref: "_definitions.yaml#/library_Strand"
+    description: "Strandedness of the library (e.g., stranded, unstranded)."
   library_strategy:
     $ref: "_definitions.yaml#/library_strategy"
+    description: "Overall sequencing strategy (e.g., RNA-Seq, WGS)."
   platform:
     $ref: "_definitions.yaml#/platform"
+    description: "Platform used for sequencing."
   read_length:
     type: string
+    description: "Length of the sequencing reads."
   sequencing_center:
     type: string
+    description: "Name of the sequencing center."
   sequencing_date:
     type: string
+    description: "Date of sequencing."
   size_selection_range:
     type: string
+    description: "Size range selected for library preparation."
   spike_ins_concentration:
     type: string
+    description: "Concentration of spike-in used."
   spike_ins_fasta:
     type: string
+    description: "FASTA file reference for spike-ins."
   target_capture_kit_catalog_number:
     type: string
+    description: "Catalog number of target capture kit."
   target_capture_kit_name:
     type: string
+    description: "Name of the target capture kit."
   target_capture_kit_target_region:
     type: string
+    description: "Target regions defined by the kit."
   target_capture_kit_vendor:
     type: string
+    description: "Vendor for the capture kit."
   target_capture_kit_version:
     type: string
+    description: "Version of the kit used."
   target_depletion_kit_catalog_number:
     type: string
+    description: "Catalog number of depletion kit."
   target_depletion_kit_name:
     type: string
+    description: "Name of depletion kit."
   target_depletion_kit_target_region:
     type: string
+    description: "Target regions depleted."
   target_depletion_kit_vendor:
     type: string
+    description: "Vendor of depletion kit."
   target_depletion_kit_version:
     type: string
+    description: "Version of depletion kit."
   to_trim_adapter_sequence:
     type: boolean
+    description: "Whether adapters should be trimmed."
 
   id:
     $ref: "_definitions.yaml#/UUID"

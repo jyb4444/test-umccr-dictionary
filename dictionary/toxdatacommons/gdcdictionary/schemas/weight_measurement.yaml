@@ -64,6 +64,7 @@ properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
     enum: [ "weight_measurement" ]
+    description: "The node type, which must be 'weight_measurement'. Used for schema validation."
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
@@ -72,10 +73,13 @@ properties:
     $ref: "_definitions.yaml#/data_format"
   file_source_repository:
     type: string
+    description: "Name of the repository or storage system from which the file was obtained or hosted."
   repository_accession_id:
     type: string
+    description: "Accession number or persistent identifier assigned by the source repository."
   repository_download_ftp:
     type: string
+    description: "FTP link to download the file from the repository source, if available."
   subjects:
     $ref: "_definitions.yaml#/to_many"
   diets:
@@ -94,4 +98,4 @@ properties:
     $ref: "_definitions.yaml#/datetime"
   provenance: 
     type: string
-    description: "template version" 
+    description: "Template version used to generate the metadata record." 

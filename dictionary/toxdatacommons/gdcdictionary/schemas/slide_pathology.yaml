@@ -48,6 +48,7 @@ uniqueKeys:
 properties:
   type:
     enum: [ "slide_pathology" ]
+    description: "The node type, which must be 'slide_pathology'. Used for schema validation."
   id:
     $ref: "_definitions.yaml#/UUID"
     systemAlias: node_id
@@ -56,22 +57,25 @@ properties:
   submitter_id:
     type:
       - string
-      
+    description: "The file ID assigned by the submitter."
   finding_type:
     $ref: "_definitions.yaml#/finding_type"
-
+    description: "Pathological findings observed in the slide (e.g., steatosis, necrosis)."
   topography_type:
     $ref: "_definitions.yaml#/topography_type"
+    description: "Anatomical region or structure where the finding was observed."
   grade:
     description: "Magnitude of pathological changes."
     type: number
+    description: "Magnitude or severity of the pathological changes, often on a numeric or ordinal scale."
   spontaneous_flag:
     description: "The flag shows whether the lesion occurred spontaneously. The flag
       value is TRUE if the lesion occurred spontaneously."
     type: boolean
+    description: "Boolean indicating if the lesion occurred spontaneously (TRUE) or was treatment-induced (FALSE)."
   scoring_system:
     $ref: "_definitions.yaml#/scoring_system"
-
+    description: "Name of the scoring system used to grade pathology (e.g., INHAND, TGGates)."
   slides:
     $ref: "_definitions.yaml#/to_one"
   slide_images:
