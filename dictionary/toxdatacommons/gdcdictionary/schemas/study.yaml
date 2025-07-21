@@ -50,7 +50,7 @@ properties:
     $ref: "_definitions.yaml#/to_one_project"
   study_title:
     type: string
-    description: "A human-readable title or name for the study, typically descriptive and unique (e.g., "Subchronic PFOS exposure in male mice")."
+    description: "A human-readable title or name for the study, typically descriptive and unique (e.g., \"Subchronic PFOS exposure in male mice\")."
   study_description:
     type: string
     description: "A free-text summary describing the study’s objectives, methodology, and scope. This may be extracted from the methods section of a manuscript or protocol."

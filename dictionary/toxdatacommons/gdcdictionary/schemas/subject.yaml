@@ -40,7 +40,7 @@ links:
 properties: 
   type: 
     enum: ["subject"]
-    description: "The node type, which must be "subject" for all entries in this table. Used for schema validation."
+    description: "The node type, which must be \"subject\" for all entries in this table. Used for schema validation."
   id:
     $ref: "_definitions.yaml#/UUID"
     systemAlias: node_id
