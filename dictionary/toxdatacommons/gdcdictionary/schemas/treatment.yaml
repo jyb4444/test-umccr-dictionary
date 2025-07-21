@@ -1,0 +1,121 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+id: "treatment"
+title: treatment
+type: object
+category: administrative
+program: '*'
+project: '*'
+description: >
+  description of treatment.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties: 
+  - id
+  - project_id
+  - state
+  - created_datetime
+  - updated_datetime
+
+required:
+  - type
+  - submitter_id
+  - treatment_protocol
+
+#  - provenance
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+    - name: subjects
+      backref: treatments
+      label: member_of
+      target_type: subject
+      multiplicity: many_to_many
+      required: true
+    - name: cell_subjects
+      backref: treatments
+      label: member_of
+      target_type: cell_subject
+      multiplicity: many_to_one
+      required: false
+
+properties: 
+  type:
+    enum: ["treatment"]
+    description: ""
+  id:
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
+  submitter_id:
+    type: string
+    description: "Unique identifier assigned by the submitter to track this treatment record. Should be unique within the dataset. Each dose administration should be considered an separate record."
+  subjects:
+    $ref: "_definitions.yaml#/to_many"
+  cell_subjects:
+    $ref: "_definitions.yaml#/to_one"
+  date:
+    type: string
+    description: "The calendar date when this treatment was administered (YYYY-MM-DD)."
+  administration_volume_ml:
+    type: number
+    description: "The final administered volume in milliliters. Represents the volume delivered to the subject."
+  dose_amount: 
+    type: number
+    description: "Numeric value representing the administered dose (e.g., 5). Units are defined separately."   
+  dose_amount_unit: 
+    $ref: "_definitions.yaml#/dose_amount_unit"
+    description: "The unit associated with the dose amount (e.g., mg/kg, µg/mouse)."
+  route: 
+    $ref: "_definitions.yaml#/route"
+    description: "The route of administration used."
+  test_article_administration_zt: 
+    type: number
+    description: "Zeitgeber time of administration, indicating the circadian phase at which treatment was delivered."
+  test_article_administration_duration: 
+    type: number
+    description: "The duration of administration in time units (e.g., minutes, hours). Important for infusion or exposure windows."
+  test_article_name: 
+    type: string
+    description: "Common or systematic name of the test article administered. Should match its DSSTox identifier."
+  test_article_dtxsid:
+    type: string
+    description: "DSSTox substance identifier for the test article (chemical or drug) administered."
+  vehicle_name: 
+    type: string
+    description: "Common name of the vehicle or diluent. Should match its DSSTox identifier when available."
+  vehicle_dtxsid:
+    type: string
+    description: "DSSTox substance identifier for the vehicle or solvent used to deliver the test article."
+  addition_volume: 
+    type: string
+    description: "Volume of stock solution added to achieve desired concentration in cell culture."
+  stock_concentration:
+    type: string
+    description: "The concentration of the stock solution before dilution. Useful for reconstructing dose calculations."
+  final_concentration: 
+    type: string
+    description: "Concentration of the administered compound after dilution, if applicable. Expressed as a string or numeric value with units."
+  concentration_unit:
+    type: string
+    description: "Unit of concentration used to express treatment strength (e.g., mg/mL, µM)."   
+  treatment_protocol:
+    type: string
+    description: "A brief description or reference to the protocol governing the treatment (e.g., dose regimen, route, frequency). May include a protocols.io DOI or SOP reference."     
+  provenance:
+    type: string
+    description: "The version or source of the data template used to collect the study metadata (autopopulated)."
+  state:
+    $ref: "_definitions.yaml#/state"
+  project_id:
+    $ref: "_definitions.yaml#/project_id"
+  created_datetime:
+    $ref: "_definitions.yaml#/datetime"
+  updated_datetime:
+    $ref: "_definitions.yaml#/datetime"

@@ -1,0 +1,86 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "study"
+title: study
+type: object
+category: administrative
+program: '*'
+project: '*'
+description: >
+  description of study.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties: 
+  - id
+  - project_id
+  - state
+  - created_datetime
+  - updated_datetime
+
+required: 
+  - type
+  - submitter_id
+
+
+uniqueKeys: 
+  - [ id ]
+  - [project_id, submitter_id]
+
+
+links: 
+  - name: projects
+    backref: studies
+    label: member_of
+    target_type: project
+    multiplicity: many_to_one
+    required: true
+
+properties:
+  type:
+    enum: ["study"]
+  id:
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
+  submitter_id:
+    type: string
+    description: "A unique user-defined identifier for this study. Typically composed of the study name, number, or lab-specific code."
+  projects:
+    $ref: "_definitions.yaml#/to_one_project"
+  study_title:
+    type: string
+    description: "A human-readable title or name for the study, typically descriptive and unique (e.g., \"Subchronic PFOS exposure in male mice\")."
+  study_description:
+    type: string
+    description: "A free-text summary describing the study’s objectives, methodology, and scope. This may be extracted from the methods section of a manuscript or protocol."
+  study_design:
+    $ref: "_definitions.yaml#/study_design"
+    description: "A plan specification comprised of protocols (which may specify how and what kinds of data will be gathered) that are executed as part of an investigation and is realized during a study design execution. This term corresponds to term MD-2 of the CEBS data dictionary."
+  study_type: 
+    $ref: "_definitions.yaml#/study_type"
+    description: "A categorical value specification that specifies the type of study from a list of study types."
+  test_article_name:
+    type: string
+    description: "Common or systematic name of the test article administered. Should match its DSSTox identifier."
+  test_article_dtxsid:
+    type: string
+    description: "DSSTox substance identifier for the test article (chemical or drug) administered."
+  experimental_setting:
+    $ref: "_definitions.yaml#/experimental_setting"
+    description: "The general context or conditions under which the study was performed (e.g., in vivo, in vitro, ex vivo, computational)."
+  organism:
+    $ref: "_definitions.yaml#/organism"
+    description: "The species of organism used in the study using its  binomial (Latin) scientific name."
+  provenance: 
+    type: string
+    description: "The version or source of the data template used to collect the study metadata (autopopulated)."
+  state:
+    $ref: "_definitions.yaml#/state"
+  project_id:
+    $ref: "_definitions.yaml#/project_id"
+  created_datetime:
+    $ref: "_definitions.yaml#/datetime"
+  updated_datetime:
+    $ref: "_definitions.yaml#/datetime"
+

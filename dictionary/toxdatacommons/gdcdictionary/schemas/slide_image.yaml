@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "cardiovascular_measurement"
-title: Cardiovascular measurements
+id: "slide_image"
+title: Slide imaging data
 type: object
 namespace: https://toxdatacommons.com
 category: data_file
 program: '*'
 project: '*'
 description: >
-  Cardiovascular measurements
+  Data file containing image of a slide.
 additionalProperties: false
 submittable: true
 validators: null
@@ -25,7 +25,7 @@ systemProperties:
 required:
   - submitter_id
   - type
-
+  - study
 
 uniqueKeys:
   - [ id ]
@@ -35,14 +35,20 @@ links:
   - exclusive: false
     required: true
     subgroup:
-    - name: cardiovascular_assays
-      backref: cardiovascular_measurements
+    - name: study
+      backref: slide_image
       label: data_from
-      target_type: cardiovascular_assay
+      target_type: study
       multiplicity: many_to_many
-      required: false   
+      required: true
+    - name: slides
+      backref: slide_images
+      label: data_from
+      target_type: slide
+      multiplicity: many_to_one
+      required: false
     - name: core_metadata_collections
-      backref: cardiovascular_measurements
+      backref: slide_images
       label: data_from
       target_type: core_metadata_collection
       multiplicity: many_to_many
@@ -51,7 +57,8 @@ links:
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
-    enum: [ "cardiovascular_measurement" ]
+    enum: [ "slide_image" ]
+    description: "The node type, which must be 'slide_image'. Used for schema validation."
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
@@ -60,18 +67,15 @@ properties:
     $ref: "_definitions.yaml#/data_format"
   file_source_repository:
     type: string
+    description: "Name of the repository or storage system from which the file was obtained or hosted."
   repository_accession_id:
     type: string
+    description: "Accession number or persistent identifier assigned by the source repository."
   repository_download_ftp:
     type: string
-  subjects:
-    $ref: "_definitions.yaml#/to_many"
-  cardiovascular_assays:
-    $ref: "_definitions.yaml#/to_many"
-  diets:
-    $ref: "_definitions.yaml#/to_many"
-  samples:
-    $ref: "_definitions.yaml#/to_many"
+    description: "FTP link to download the file from the repository source, if available."
+  slides:
+    $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_many"
   state:
@@ -84,4 +88,6 @@ properties:
     $ref: "_definitions.yaml#/datetime"
   provenance: 
     type: string
-    description: "template version" 
+    description: "Template version used to generate the metadata record." 
+  study:
+    $ref: "_definitions.yaml#/to_many"
