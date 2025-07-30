@@ -57,13 +57,15 @@ properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
     enum: [ "unaligned_read" ]
+    description: "The node type, which must be 'unaligned_read'. Used for schema validation."
   submitter_id:
     type: string
+    description: "The file ID assigned by the submitter."
   read_groups: 
     $ref: "_definitions.yaml#/to_many"
-
   file_name:
     type: string
+    description: "The name of the file."
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
@@ -72,9 +74,10 @@ properties:
     $ref: "_definitions.yaml#/data_format"
   SRA_accession_id:
     type: string
+    description: "Sequence Read Archive accession ID."
   provenance: 
     type: string
-    description: "template version"      
+    description: "Metadata template version."      
       
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_many"
