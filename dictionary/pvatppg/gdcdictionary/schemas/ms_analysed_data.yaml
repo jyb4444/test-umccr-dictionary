@@ -26,6 +26,12 @@ links:
   - exclusive: false
     required: true
     subgroup:
+    - name: study
+      backref: flow_analysis_datas
+      label: data_from
+      target_type: study
+      multiplicity: many_to_many
+      required: true
     - name: ms_analyses
       backref: ms_analysed_datas
       label: data_from
@@ -42,6 +48,7 @@ links:
 required:
   - submitter_id
   - type
+  - study
 
 
 uniqueKeys:
@@ -70,4 +77,6 @@ properties:
   ms_analyses:
     $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
+    $ref: "_definitions.yaml#/to_many"
+  study:
     $ref: "_definitions.yaml#/to_many"

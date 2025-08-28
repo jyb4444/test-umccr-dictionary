@@ -25,6 +25,7 @@ systemProperties:
 required:
   - submitter_id
   - type
+  - study
 
 
 uniqueKeys:
@@ -35,6 +36,12 @@ links:
   - exclusive: false
     required: true
     subgroup:
+    - name: study
+      backref: flow_analysis_datas
+      label: data_from
+      target_type: study
+      multiplicity: many_to_many
+      required: true
     - name: slides
       backref: slide_images
       label: data_from
@@ -79,3 +86,5 @@ properties:
   provenance: 
     type: string
     description: "template version" 
+  study:
+    $ref: "_definitions.yaml#/to_many"
