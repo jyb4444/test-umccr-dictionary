@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "slide_pathology"
 title: Slide Pathology
 type: object
-namespace: https://toxdatacommons.com
+namespace: https://data.pvatppgmsu.com
 category: notation
 program: '*'
 project: '*'

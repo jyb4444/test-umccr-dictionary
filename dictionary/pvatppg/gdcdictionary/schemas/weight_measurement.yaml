@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "weight_measurement"
 title: Weight measurements
 type: object
-namespace: https://toxdatacommons.com
+namespace: https://data.pvatppgmsu.com
 category: data_file
 program: '*'
 project: '*'

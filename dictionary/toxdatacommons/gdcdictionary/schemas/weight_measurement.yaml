@@ -25,6 +25,7 @@ systemProperties:
 required:
   - submitter_id
   - type
+  - study
 
 
 uniqueKeys:
@@ -35,6 +36,12 @@ links:
   - exclusive: false
     required: true
     subgroup:
+    - name: study
+      backref: weight_measurements
+      label: data_from
+      target_type: study
+      multiplicity: many_to_many
+      required: true
     - name: subjects
       backref: weight_measurements
       label: data_from
@@ -99,3 +106,5 @@ properties:
   provenance: 
     type: string
     description: "Template version used to generate the metadata record." 
+  study:
+    $ref: "_definitions.yaml#/to_many"

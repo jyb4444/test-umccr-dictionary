@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "flow_data"
 title: Flow cytometry raw data
 type: object
-namespace: https://toxdatacommons.com
+namespace: https://data.pvatppgmsu.com
 category: data_file
 program: '*'
 project: '*'
