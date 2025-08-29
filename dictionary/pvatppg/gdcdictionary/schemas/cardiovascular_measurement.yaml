@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "cardiovascular_measurement"
 title: Cardiovascular measurements
 type: object
-namespace: https://toxdatacommons.com
+namespace: https://data.pvatppgmsu.com
 category: data_file
 program: '*'
 project: '*'
@@ -35,10 +35,22 @@ links:
   - exclusive: false
     required: true
     subgroup:
-    - name: cardiovascular_assays
+    - name: study
       backref: cardiovascular_measurements
       label: data_from
-      target_type: cardiovascular_assay
+      target_type: study
+      multiplicity: many_to_many
+      required: true
+    - name: subjects
+      backref: cardiovascular_measurements
+      label: data_from
+      target_type: subject
+      multiplicity: many_to_many
+      required: false   
+    - name: samples
+      backref: cardiovascular_measurements
+      label: data_from
+      target_type: sample
       multiplicity: many_to_many
       required: false   
     - name: core_metadata_collections
@@ -52,6 +64,15 @@ properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
     enum: [ "cardiovascular_measurement" ]
+  cardiovascular_endpoint:
+    $ref: "_definitions.yaml#/cardiovascular_endpoint"
+  measurement_equipment:
+    $ref: "_definitions.yaml#/measurement_equipment"
+  immobilization_method:
+    $ref: "_definitions.yaml#/immobilization_method"
+  measurement_timepoint:
+    description: "The number of days since first intervation/treatment (first day = 0)"
+    type: number
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
@@ -63,6 +84,14 @@ properties:
   repository_accession_id:
     type: string
   repository_download_ftp:
+    type: string
+  protocol:
+    type: string
+  protocol_doi:
+    type: string
+  measurement_ZT:
+    type: string
+  measurement_date:
     type: string
   subjects:
     $ref: "_definitions.yaml#/to_many"
@@ -85,3 +114,9 @@ properties:
   provenance: 
     type: string
     description: "template version" 
+  study:
+    $ref: "_definitions.yaml#/to_many"
+  subject:
+    $ref: "_definitions.yaml#/to_many"
+  sample:
+    $ref: "_definitions.yaml#/to_many"

@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "slide_image"
 title: Slide imaging data
 type: object
-namespace: https://toxdatacommons.com
+namespace: https://data.pvatppgmsu.com
 category: data_file
 program: '*'
 project: '*'
@@ -25,6 +25,7 @@ systemProperties:
 required:
   - submitter_id
   - type
+  - study
 
 
 uniqueKeys:
@@ -35,6 +36,12 @@ links:
   - exclusive: false
     required: true
     subgroup:
+    - name: study
+      backref: flow_analysis_datas
+      label: data_from
+      target_type: study
+      multiplicity: many_to_many
+      required: true
     - name: slides
       backref: slide_images
       label: data_from
@@ -79,3 +86,5 @@ properties:
   provenance: 
     type: string
     description: "template version" 
+  study:
+    $ref: "_definitions.yaml#/to_many"

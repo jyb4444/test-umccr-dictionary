@@ -24,6 +24,7 @@ systemProperties:
 required:
   - submitter_id
   - type
+  - study
 
 uniqueKeys:
   - [id]
@@ -33,6 +34,12 @@ links:
   - exclusive: false
     required: true
     subgroup:
+    - name: study
+      backref: flow_analysis_datas
+      label: data_from
+      target_type: study
+      multiplicity: many_to_many
+      required: true
     - name: unaligned_reads
       backref: unaligned_reads_qcs
       label: member_of
@@ -79,5 +86,6 @@ properties:
 
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_many"
-
+  study:
+    $ref: "_definitions.yaml#/to_many"
 
