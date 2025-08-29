@@ -27,7 +27,7 @@ links:
     required: true
     subgroup:
     - name: study
-      backref: flow_analysis_datas
+      backref: ms_analysed_datas
       label: data_from
       target_type: study
       multiplicity: many_to_many
