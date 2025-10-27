@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "cardiovascular_measurement"
-title: Cardiovascular measurements
+id: "ms_raw_data"
+title: Mass spectrometry raw data
 type: object
 namespace: https://toxdatacommons.com
 category: data_file
 program: '*'
 project: '*'
 description: >
-  Cardiovascular measurements
+  Data file containing image of a slide.
 additionalProperties: false
 submittable: true
 validators: null
@@ -22,36 +22,42 @@ systemProperties:
   - file_state
   - error_type
 
-required:
-  - submitter_id
-  - type
-
-
-uniqueKeys:
-  - [ id ]
-  - [ project_id, submitter_id ]
-
 links:
   - exclusive: false
     required: true
     subgroup:
-    - name: cardiovascular_assays
-      backref: cardiovascular_measurements
+    - name: study
+      backref: ms_raw_datas
       label: data_from
-      target_type: cardiovascular_assay
+      target_type: study
       multiplicity: many_to_many
-      required: false   
+      required: true
+    - name: mass_spec_assays
+      backref: ms_raw_datas
+      label: data_from
+      target_type: mass_spec_assay
+      multiplicity: many_to_many
+      required: false
     - name: core_metadata_collections
-      backref: cardiovascular_measurements
+      backref: ms_raw_datas
       label: data_from
       target_type: core_metadata_collection
       multiplicity: many_to_many
       required: false
 
+required:
+  - submitter_id
+  - type
+  - study
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
-    enum: [ "cardiovascular_measurement" ]
+    enum: [ "ms_raw_data" ]
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
@@ -64,24 +70,13 @@ properties:
     type: string
   repository_download_ftp:
     type: string
-  subjects:
-    $ref: "_definitions.yaml#/to_many"
-  cardiovascular_assays:
-    $ref: "_definitions.yaml#/to_many"
-  diets:
-    $ref: "_definitions.yaml#/to_many"
-  samples:
+  provenance: 
+    type: string
+    description: "template version"      
+      
+  mass_spec_assays:
     $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_many"
-  state:
-    $ref: "_definitions.yaml#/state"
-  project_id:
-    $ref: "_definitions.yaml#/project_id"
-  created_datetime:
-    $ref: "_definitions.yaml#/datetime"
-  updated_datetime:
-    $ref: "_definitions.yaml#/datetime"
-  provenance: 
-    type: string
-    description: "template version" 
+  study:
+    $ref: "_definitions.yaml#/to_many"
