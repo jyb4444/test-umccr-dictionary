@@ -64,7 +64,7 @@ links:
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
   type:
-    enum: [ "clinical_chemistrys" ]
+    enum: [ "clinical_chemistry" ]
   data_category:
     $ref: "_definitions.yaml#/data_category"
   data_type:
