@@ -113,6 +113,9 @@ git pull origin main
 git branch -d feature/your-dictionary-changes
 git push origin --delete feature/your-dictionary-changes
 ```
+### Note:
+
+Updates to the remote GitHub repository do not automatically trigger updates to the website. Follow the instructions located here to update the website after changes are made to the msu-gen3-dictionaries repository: https://github.com/Nault-lab/gen3-gitops/blob/main/sop/data-dictionary-update.md
 
 ## Troubleshooting
 
