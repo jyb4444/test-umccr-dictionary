@@ -342,7 +342,6 @@ data_category:
     - Low Pass WGS
     - miRNA-seq
     - proteomics
-    - Reproductive cycle
     - RNA-seq
     - snRNAseq
     - Spatial Trancriptomics
@@ -377,7 +376,6 @@ data_type:
     - Food Weights
     - Hematology
     - integrated peaks
-    - Reproductive cycle
     - Sample Weights
     - Unaligned Read QC
     - Unaligned Reads
@@ -1569,7 +1567,7 @@ immobilization_method:
     - Physical restraint
     - None 
 
-reproductive_cycle_stage:
+reproductive_cycle_status:
   enum:
     - Proestrus
     - Estrus
