@@ -1568,3 +1568,15 @@ immobilization_method:
     - Isoflurane
     - Physical restraint
     - None 
+
+reproductive_cycle_stage:
+  enum:
+    - Proestrus
+    - Estrus
+    - Metestrus
+    - Diestrus
+    - Gestation
+    - Lactation
+    - Estropause
+    - Missing
+    - Not applicable
